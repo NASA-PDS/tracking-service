@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  tracking:
+    build:
+      context: .
+      dockerfile: "Dockerfile.local"
+    ports:
+      - "8080:8086"
+    networks:
+      - pds
+    volumes:
+      - ./jdbc.properties:/etc/tracking_service/jdbc.properties
+    ports:
+      - "5000:5000"
+  mysql:
+    image: "mysql:8.0.22"
+    environment:
+      - MYSQL_DATABASE=tracking
+      - MYSQL_PASSWORD=your_password
+      - MYSQL_ROOT_PASSWORD=not_overly_secure
+      - MYSQL_USER=tracking
+    networks:
+      - pds
+    ports:
+      - "3306:3306"
+    volumes:
+      - /tmp/tracking_mysql:/var/lib/mysql
+
+networks:
+  pds:
+    driver: bridge
+
