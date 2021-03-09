@@ -11,6 +11,8 @@ RUN apt-get update && \
 
 # get and build application from git
 RUN git clone https://github.com/NASA-PDS/tracking-service.git
+# if one need a specific tag, default is latest master version
+# git checkout tags/<tagname>
 WORKDIR "/tracking-service"
 
 # Point at the JVM for maven building javadoc (may need to be x86 for 32bit)
