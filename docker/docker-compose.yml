@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  tracking:
+    build:
+      context: tracking
+      dockerfile: "Dockerfile"
+    networks:
+      - pds
+    ports:
+      - "8086:8080"
+    volumes:
+      - ./tracking/jdbc.properties:/usr/share/tomcat9/lib/mysql.properties
+      
+  mysql-server:
+    image: "mysql:8.0.22"
+    container_name: "mysql-server"
+    environment:
+      - MYSQL_DATABASE=tracking
+      - MYSQL_PASSWORD=your_password
+      - MYSQL_ROOT_PASSWORD=not_overly_secure
+      - MYSQL_USER=tracking
+    networks:
+      - pds
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql/create-schema.sql:/docker-entrypoint-initdb.d/create-schema.sql
+      - ./mysql/load-schema.sql:/docker-entrypoint-initdb.d/load-schema.sql
+      - /tmp/tracking_mysql:/var/lib/mysql
+
+
+networks:
+  pds:
+    name: pds
+    driver: bridge
