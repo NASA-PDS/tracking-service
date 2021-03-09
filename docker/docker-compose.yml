@@ -3,7 +3,7 @@ services:
   tracking:
     build:
       context: tracking
-      dockerfile: "Dockerfile.local"
+      dockerfile: "Dockerfile"
     networks:
       - pds
     ports:
