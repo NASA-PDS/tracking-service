@@ -55,7 +55,7 @@
   </licenses>
   
   <scm>
-    <url>https://github.jpl.nasa.gov/PDSEN/tracking-service/tree/master</url>
+    <url>https://github.jpl.nasa.gov/PDSEN/tracking-service/tree/main</url>
     <connection>scm:git:git://github.jpl.nasa.gov/PDSEN/tracking-service.git</connection>
     <developerConnection>scm:git:ssh://github.jpl.nasa.gov:PDSEN/tracking-service.git</developerConnection>
   </scm>
